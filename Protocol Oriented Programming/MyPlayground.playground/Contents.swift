@@ -1,8 +1,5 @@
 //: Playground - noun: a place where people can play
 
-import UIKit
-
-
 protocol Brid: BooleanType {
     var name: String { get }
     var canFly: Bool { get }
@@ -35,6 +32,7 @@ struct SwiftBird: Brid, Flyable {
     }
 }
 
+//canFly 的默认值为 true,只有遵循 Flyable 协议的类才能飞
 extension Brid where Self: Flyable {
     var canFly: Bool {
         return true
@@ -67,18 +65,16 @@ enum UnladenSwallow: Brid, Flyable {
     }
 }
 
+//扩展 BooleanType 使其有 Bool 值的属性
 extension BooleanType where Self: Brid {
-    
     var boolValue: Bool {
         return self.canFly
     }
 }
 
+// Bird 遵循 BooleanType 协议后，遵循 Bird 协议的类就可以当做 Bool 使用
 if UnladenSwallow.African {
     print("can fly")
 }else {
-    print("sit here")
+    print("just sit here")
 }
-
-
-
